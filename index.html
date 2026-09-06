@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta name="theme-color" content="#f7931a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Bitcoin Blake">
+
+  <link rel="manifest" href="/manifest.json">
+
   <title>Bitcoin Blake | BTCB2 / USDC</title>
 
   <style>
@@ -15,7 +22,7 @@
     body {
       margin: 0;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
     }
 
     body {
@@ -26,10 +33,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      min-height: 100vh;
     }
 
     .container {
       text-align: center;
+      padding: 30px;
     }
 
     .logo {
@@ -75,6 +85,54 @@
       font-size: 11px;
       letter-spacing: 1px;
     }
+
+    #installButton {
+      display: none;
+      margin: 30px auto 0;
+      padding: 10px 18px;
+
+      background: #f7931a;
+      color: #0b0b0b;
+
+      border: none;
+      border-radius: 6px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+    #installButton:hover {
+      opacity: 0.9;
+    }
+
+    #installInstructions {
+      display: none;
+      max-width: 420px;
+      margin: 25px auto 0;
+
+      padding: 20px;
+
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 8px;
+
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.6;
+
+      text-align: left;
+    }
+
+    #installInstructions strong {
+      color: #f7931a;
+    }
+
+    #installInstructions h3 {
+      margin-top: 0;
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -91,6 +149,33 @@
     <div id="price">Loading...</div>
 
     <div class="source">LIVE PRICE · NEOXA</div>
+
+    <button id="installButton">Install Bitcoin Blake</button>
+
+    <div id="installInstructions">
+
+      <h3>Install Bitcoin Blake</h3>
+
+      <p><strong>Android / Chrome</strong></p>
+      <p>
+        Open the browser menu and select
+        <strong>Install app</strong> or
+        <strong>Add to Home screen</strong>.
+      </p>
+
+      <p><strong>iPhone / iPad</strong></p>
+      <p>
+        Tap the <strong>Share</strong> button in Safari,
+        then select <strong>Add to Home Screen</strong>.
+      </p>
+
+      <p><strong>Windows / Mac / Linux</strong></p>
+      <p>
+        In Chrome or another supported browser, look for the
+        <strong>Install</strong> icon in the address bar or browser menu.
+      </p>
+
+    </div>
 
   </div>
 
@@ -128,6 +213,47 @@
     socket.on("disconnect", () => {
       document.getElementById("price").textContent = "Disconnected";
     });
+
+    let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+
+      deferredPrompt = event;
+
+      document.getElementById("installButton").style.display = "block";
+    });
+
+    document.getElementById("installButton").addEventListener("click", async () => {
+
+      if (!deferredPrompt) {
+        document.getElementById("installInstructions").style.display = "block";
+        return;
+      }
+
+      deferredPrompt.prompt();
+
+      const { outcome } = await deferredPrompt.userChoice;
+
+      console.log("PWA install:", outcome);
+
+      deferredPrompt = null;
+
+      document.getElementById("installButton").style.display = "none";
+    });
+
+    window.addEventListener("appinstalled", () => {
+      document.getElementById("installButton").style.display = "none";
+      document.getElementById("installInstructions").style.display = "none";
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js")
+          .then(() => console.log("Service worker registered"))
+          .catch(error => console.error("Service worker error:", error));
+      });
+    }
   </script>
 
 </body>
