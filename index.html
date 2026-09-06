@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta name="theme-color" content="#f7931a">
+  <meta name="theme-color" content="#0b0b0b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Bitcoin Blake">
@@ -18,37 +18,57 @@
       box-sizing: border-box;
     }
 
-    html,
-    body {
+    html {
       margin: 0;
+      padding: 0;
       width: 100%;
       min-height: 100%;
+      background: #0b0b0b;
     }
 
     body {
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+
       background: #0b0b0b;
       color: #f7931a;
+
       font-family: Arial, Helvetica, sans-serif;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      min-height: 100vh;
+      overflow-x: hidden;
+
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     .container {
+      width: 100%;
+      max-width: 520px;
+
+      padding: 32px 20px;
+
       text-align: center;
-      padding: 30px;
     }
 
     .logo {
       width: 58px;
       height: 58px;
+
       margin: 0 auto 18px;
 
       background: #f7931a;
       color: #0b0b0b;
+
       border-radius: 50%;
 
       display: flex;
@@ -63,6 +83,7 @@
       font-size: 24px;
       font-weight: 700;
       letter-spacing: 1px;
+
       margin-bottom: 8px;
     }
 
@@ -70,31 +91,48 @@
       color: #999;
       font-size: 15px;
       letter-spacing: 2px;
+
       margin-bottom: 14px;
     }
 
     #price {
-      font-size: 64px;
+      width: 100%;
+
+      font-size: clamp(38px, 15vw, 64px);
       font-weight: 600;
       letter-spacing: -2px;
+
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .source {
       margin-top: 14px;
+
       color: #555;
+
       font-size: 11px;
       letter-spacing: 1px;
     }
 
-    #installButton {
-      display: none;
-      margin: 30px auto 0;
-      padding: 10px 18px;
+    .install-section {
+      width: 100%;
 
-      background: #f7931a;
-      color: #0b0b0b;
+      margin-top: 40px;
+      padding-top: 24px;
 
-      border: none;
+      border-top: 1px solid #222;
+    }
+
+    .install-button {
+      max-width: 100%;
+
+      padding: 10px 16px;
+
+      background: transparent;
+      color: #f7931a;
+
+      border: 1px solid #f7931a;
       border-radius: 6px;
 
       font-size: 14px;
@@ -103,42 +141,96 @@
       cursor: pointer;
     }
 
-    #installButton:hover {
-      opacity: 0.9;
+    .install-button:hover {
+      background: #f7931a;
+      color: #0b0b0b;
     }
 
-    #installInstructions {
+    .instructions {
       display: none;
-      max-width: 420px;
-      margin: 25px auto 0;
 
+      width: 100%;
+      max-width: 420px;
+
+      margin: 22px auto 0;
       padding: 20px;
 
       background: #151515;
+
       border: 1px solid #292929;
       border-radius: 8px;
 
-      color: #bbb;
+      color: #aaa;
+
       font-size: 14px;
       line-height: 1.6;
 
       text-align: left;
+
+      overflow-wrap: break-word;
     }
 
-    #installInstructions strong {
-      color: #f7931a;
-    }
+    .instructions h2 {
+      margin: 0 0 18px;
 
-    #installInstructions h3 {
-      margin-top: 0;
       color: #fff;
+
+      font-size: 18px;
+    }
+
+    .instructions h3 {
+      margin: 20px 0 6px;
+
+      color: #f7931a;
+
+      font-size: 14px;
+    }
+
+    .instructions h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .instructions ol {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .instructions li {
+      margin-bottom: 5px;
+    }
+
+    .instructions strong {
+      color: #fff;
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .pair {
+        font-size: 13px;
+      }
+
+      #price {
+        letter-spacing: -1.5px;
+      }
+
+      .instructions {
+        padding: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <main class="container">
 
     <div class="logo">₿</div>
 
@@ -150,34 +242,53 @@
 
     <div class="source">LIVE PRICE · NEOXA</div>
 
-    <button id="installButton">Install Bitcoin Blake</button>
+    <div class="install-section">
 
-    <div id="installInstructions">
+      <button
+        class="install-button"
+        id="installButton"
+        type="button"
+      >
+        How to install Bitcoin Blake
+      </button>
 
-      <h3>Install Bitcoin Blake</h3>
+      <div class="instructions" id="instructions">
 
-      <p><strong>Android / Chrome</strong></p>
-      <p>
-        Open the browser menu and select
-        <strong>Install app</strong> or
-        <strong>Add to Home screen</strong>.
-      </p>
+        <h2>Install Bitcoin Blake</h2>
 
-      <p><strong>iPhone / iPad</strong></p>
-      <p>
-        Tap the <strong>Share</strong> button in Safari,
-        then select <strong>Add to Home Screen</strong>.
-      </p>
+        <h3>iPhone / iPad</h3>
 
-      <p><strong>Windows / Mac / Linux</strong></p>
-      <p>
-        In Chrome or another supported browser, look for the
-        <strong>Install</strong> icon in the address bar or browser menu.
-      </p>
+        <ol>
+          <li>Open Bitcoin Blake in <strong>Safari</strong>.</li>
+          <li>Tap the <strong>Share</strong> button.</li>
+          <li>Tap <strong>Add to Home Screen</strong>.</li>
+          <li>Enable <strong>Open as Web App</strong>.</li>
+          <li>Tap <strong>Add</strong>.</li>
+        </ol>
+
+        <h3>Android</h3>
+
+        <ol>
+          <li>Open Bitcoin Blake in <strong>Chrome</strong>.</li>
+          <li>Tap the browser menu <strong>⋮</strong>.</li>
+          <li>Select <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li>
+          <li>Confirm the installation.</li>
+        </ol>
+
+        <h3>Windows / Mac / Linux</h3>
+
+        <ol>
+          <li>Open Bitcoin Blake in a supported browser.</li>
+          <li>Look for the <strong>Install</strong> icon in the address bar.</li>
+          <li>Alternatively, open the browser menu.</li>
+          <li>Select <strong>Install Bitcoin Blake</strong>.</li>
+        </ol>
+
+      </div>
 
     </div>
 
-  </div>
+  </main>
 
   <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
 
@@ -214,44 +325,24 @@
       document.getElementById("price").textContent = "Disconnected";
     });
 
-    let deferredPrompt;
+    const installButton = document.getElementById("installButton");
+    const instructions = document.getElementById("instructions");
 
-    window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault();
+    installButton.addEventListener("click", () => {
+      const isOpen = instructions.style.display === "block";
 
-      deferredPrompt = event;
-
-      document.getElementById("installButton").style.display = "block";
-    });
-
-    document.getElementById("installButton").addEventListener("click", async () => {
-
-      if (!deferredPrompt) {
-        document.getElementById("installInstructions").style.display = "block";
-        return;
-      }
-
-      deferredPrompt.prompt();
-
-      const { outcome } = await deferredPrompt.userChoice;
-
-      console.log("PWA install:", outcome);
-
-      deferredPrompt = null;
-
-      document.getElementById("installButton").style.display = "none";
-    });
-
-    window.addEventListener("appinstalled", () => {
-      document.getElementById("installButton").style.display = "none";
-      document.getElementById("installInstructions").style.display = "none";
+      instructions.style.display = isOpen ? "none" : "block";
     });
 
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("/service-worker.js")
-          .then(() => console.log("Service worker registered"))
-          .catch(error => console.error("Service worker error:", error));
+          .then(() => {
+            console.log("Service worker registered");
+          })
+          .catch((error) => {
+            console.error("Service worker error:", error);
+          });
       });
     }
   </script>
