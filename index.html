@@ -332,7 +332,7 @@
       if (!Number.isFinite(price) || price <= 0) return;
 
       document.getElementById("price").textContent =
-        "$" + price.toFixed(8);
+        "$" + price.toFixed(2);
     });
 
     socket.on("disconnect", () => {
