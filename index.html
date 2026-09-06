@@ -54,9 +54,7 @@
     .container {
       width: 100%;
       max-width: 520px;
-
       padding: 32px 20px;
-
       text-align: center;
     }
 
@@ -83,7 +81,6 @@
       font-size: 24px;
       font-weight: 700;
       letter-spacing: 1px;
-
       margin-bottom: 8px;
     }
 
@@ -91,7 +88,6 @@
       color: #999;
       font-size: 15px;
       letter-spacing: 2px;
-
       margin-bottom: 14px;
     }
 
@@ -187,7 +183,11 @@
     }
 
     .instructions h3:first-of-type {
-      margin-top: 0;
+      margin-top: 20px;
+    }
+
+    .instructions p {
+      margin: 0 0 16px;
     }
 
     .instructions ol {
@@ -224,6 +224,10 @@
       .instructions {
         padding: 18px;
       }
+
+      .install-button {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -249,40 +253,49 @@
         id="installButton"
         type="button"
       >
-        How to install Bitcoin Blake
+        Install Bitcoin Blake
       </button>
 
       <div class="instructions" id="instructions">
 
         <h2>Install Bitcoin Blake</h2>
 
+        <p>
+          Bitcoin Blake is a Progressive Web App (PWA), which means you can
+          install this website on your phone or computer and use it like an app.
+        </p>
+
         <h3>iPhone / iPad</h3>
 
         <ol>
-          <li>Open Bitcoin Blake in <strong>Safari</strong>.</li>
+          <li>Open this page in <strong>Safari</strong>.</li>
           <li>Tap the <strong>Share</strong> button.</li>
           <li>Tap <strong>Add to Home Screen</strong>.</li>
-          <li>Enable <strong>Open as Web App</strong>.</li>
+          <li>Make sure <strong>Open as Web App</strong> is enabled.</li>
           <li>Tap <strong>Add</strong>.</li>
         </ol>
 
         <h3>Android</h3>
 
         <ol>
-          <li>Open Bitcoin Blake in <strong>Chrome</strong>.</li>
+          <li>Open this page in <strong>Chrome</strong>.</li>
           <li>Tap the browser menu <strong>⋮</strong>.</li>
           <li>Select <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li>
-          <li>Confirm the installation.</li>
+          <li>Confirm.</li>
         </ol>
 
         <h3>Windows / Mac / Linux</h3>
 
         <ol>
-          <li>Open Bitcoin Blake in a supported browser.</li>
-          <li>Look for the <strong>Install</strong> icon in the address bar.</li>
-          <li>Alternatively, open the browser menu.</li>
-          <li>Select <strong>Install Bitcoin Blake</strong>.</li>
+          <li>Open this page in a supported browser.</li>
+          <li>Use the browser's <strong>Install</strong> option or <strong>Add to desktop</strong> option.</li>
+          <li>Confirm.</li>
         </ol>
+
+        <p>
+          Once installed, open Bitcoin Blake from your Home Screen or desktop
+          just like an app to check the live BTCB2 / USDC price.
+        </p>
 
       </div>
 
