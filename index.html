@@ -12,7 +12,7 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/icon.png">
 
-  <title>Bitcoin Blake | BTCB2 / USDC</title>
+  <title>Bitcoin Blake</title>
 
   <style>
     * {
@@ -110,6 +110,48 @@
 
       font-size: 11px;
       letter-spacing: 1px;
+    }
+
+    .donation-section {
+      width: 100%;
+
+      margin-top: 32px;
+      padding-top: 22px;
+
+      border-top: 1px solid #222;
+    }
+
+    .donation-text {
+      color: #777;
+
+      font-size: 12px;
+      line-height: 1.5;
+
+      margin-bottom: 10px;
+    }
+
+    .donation-address {
+      display: block;
+
+      width: 100%;
+
+      color: #aaa;
+
+      font-size: 11px;
+      line-height: 1.5;
+
+      word-break: break-all;
+
+      text-decoration: none;
+    }
+
+    .qr-code {
+      display: block;
+
+      width: 180px;
+      height: 180px;
+
+      margin: 16px auto 0;
     }
 
     .install-section {
@@ -229,6 +271,15 @@
       .install-button {
         font-size: 13px;
       }
+
+      .donation-address {
+        font-size: 10px;
+      }
+
+      .qr-code {
+        width: 160px;
+        height: 160px;
+      }
     }
   </style>
 </head>
@@ -247,6 +298,28 @@
 
     <div class="source">LIVE PRICE · NEOXA</div>
 
+    <div class="donation-section">
+
+      <div class="donation-text">
+        Support this app.
+      </div>
+
+      <div class="donation-address">
+        BTCB2 donation address
+      </div>
+
+      <div class="donation-address">
+        bc1qvp5tjmzvu5jdlqrfvee6q9azqnsu9dmtume70m
+      </div>
+
+      <img
+        class="qr-code"
+        src="/donation-qr.png"
+        alt="BTCB2 donation QR code"
+      >
+
+    </div>
+
     <div class="install-section">
 
       <button
@@ -259,10 +332,10 @@
 
       <div class="instructions" id="instructions">
 
-        <h2>Bitcoin Blake Price Check</h2>
+        <h2>Bitcoin Blake</h2>
 
         <p>
-          Bitcoin Blake Price Check is a Progressive Web App (PWA).
+          Bitcoin Blake is a Progressive Web App (PWA).
           This means you can add this website to your phone or computer
           and use it like an app for quick access to the live BTCB2 / USDC price.
         </p>
@@ -295,7 +368,7 @@
         </ol>
 
         <p>
-          Once added, Bitcoin Blake Price Check will appear on your device
+          Once added, Bitcoin Blake will appear on your device
           like an app, giving you quick access to the live BTCB2 / USDC price.
         </p>
 
